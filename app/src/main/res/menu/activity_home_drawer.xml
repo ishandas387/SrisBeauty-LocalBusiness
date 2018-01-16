@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/category"
+            android:icon="@drawable/user"
+            android:title="Profile" />
+        <item
+            android:id="@+id/offerzone"
+            android:icon="@drawable/offer"
+            android:title="Offer Zone" />
+        <item
+            android:id="@+id/gottocart"
+            android:icon="@drawable/ic_action_cart"
+            android:title="Cart" />
+
+        <item
+            android:id="@+id/nav_admin"
+            android:icon="@drawable/ic_action_setting"
+            android:title="Admin" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_action_signout"
+            android:title="Signout" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/fb"
+                android:title="Facebook" />
+        </menu>
+    </item>
+
+</menu>

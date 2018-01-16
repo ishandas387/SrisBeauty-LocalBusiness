@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="3dp">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:paddingRight="2dp" android:paddingLeft="2dp" android:layout_marginLeft="2dp" android:layout_marginRight="2dp" android:elevation="70dp" app:cardElevation="70dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="wrap_content" android:padding="2dp" android:layout_margin="2dp" android:orientation="horizontal" android:background="@drawable/shapebycart_green_round">
+
+                <TextView
+                    android:id="@+id/ratenumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="3dp"
+                    android:text="5"
+                    android:textSize="12sp" android:gravity="center_horizontal" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_action_rate" android:gravity="center_horizontal" />
+
+            </LinearLayout>
+
+          <!--  <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">-->
+
+
+                <TextView
+                    android:layout_width="match_parent" android:padding="3dp" android:layout_margin="2dp"
+                    android:layout_height="wrap_content" android:background="#F9F9F9" android:text="Test review" android:id="@+id/reviewdes" />
+           <!-- </ScrollView>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="6" android:padding="3dp" android:layout_margin="2dp" android:id="@+id/reviewername" android:textSize="11sp" android:text="Reviewer Name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"  android:layout_weight="4" android:padding="3dp"  android:layout_margin="2dp" android:gravity="right" android:id="@+id/reviewdate" android:textSize="9sp" android:text="review date" />
+
+            </LinearLayout>
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:paddingLeft="3dp" android:layout_marginLeft="2dp" android:id="@+id/revieweremail" android:textSize="10sp" android:text="Reviewer Email"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>

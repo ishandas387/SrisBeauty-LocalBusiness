@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:alpha="0.9">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="110dp" android:elevation="80dp" android:layout_marginTop="1dp"
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_marginLeft="7dp"
+                android:showDividers="middle"
+                android:orientation="vertical"
+                android:background="@drawable/shapebycart2"
+                android:padding="10dp"
+                android:divider="?android:dividerHorizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Pixel C"
+                    android:id="@+id/itemname"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:weightSum="9" android:layout_marginTop="9dp">
+                 <!--   <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_weight="3"  android:orientation="vertical"
+
+                        >
+                      &lt;!&ndash;  <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="Date"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:textSize="12sp" android:text="25-10/10:00"
+                            android:id="@+id/servicetime"/>&ndash;&gt;
+
+                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_weight="6" android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:textSize="12sp" android:textColor="@color/lightgreytype" android:text="PRICE" />
+
+                        <TextView
+                            android:id="@+id/itemprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="Rs 2345534" android:textSize="15sp" />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_weight="3" android:orientation="vertical">
+                        <ImageButton
+                            android:id="@+id/deletebutton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:src="@drawable/deleteicon" android:layout_gravity="right" android:background="@android:color/transparent" />
+
+                    </LinearLayout>
+
+            </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+</android.support.v7.widget.CardView>
+
+    </RelativeLayout>

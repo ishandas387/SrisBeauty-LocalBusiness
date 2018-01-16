@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp" android:elevation="40dp" android:layout_marginTop="1dp"
+        app:cardBackgroundColor="@android:color/black" android:padding="1dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp" android:background="@android:color/white" android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:padding="5dp" android:layout_margin="4dp" android:gravity="center"
+                    android:text="item 1"  android:id="@+id/itemname" android:textStyle="bold" android:textSize="15dip"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp" android:weightSum="10" android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:layout_weight="7" android:layout_marginRight="1dp" android:layout_marginTop="1dp" android:background="@android:color/white">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:layout_margin="3dp" android:id="@+id/itemprice" android:textAlignment="center" android:text="$12344" android:textSize="22dip" android:textStyle="bold"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:layout_weight="3"  android:layout_marginTop="1dp" android:background="@android:color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_marginTop="10dp" android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp" android:background="@drawable/shape">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:id="@+id/accept"
+                            android:layout_height="wrap_content" android:background="@null" android:src="@drawable/accept" android:layout_margin="3dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+
+

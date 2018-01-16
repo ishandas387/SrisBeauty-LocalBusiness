@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_300"
+    tools:context="com.ishan387.testlogin.AdminMenu" >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical" android:background="@android:color/white">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/viewordercard" android:elevation="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:orientation="horizontal" android:id="@+id/adminvieworders" android:weightSum="10">
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_width="0dp" android:scaleType="center" android:layout_marginLeft="5dp"
+                        android:layout_height="wrap_content" android:padding="2dp"  android:layout_weight="3" android:src="@drawable/ic_vieworders"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="4" android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="View Orders" android:textSize="20sp" android:textColor="@android:color/black" />
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content" android:text="Take action on your placed orders" android:textSize="11sp" android:textColor="@color/lightgreytype" android:layout_weight="3"/>
+
+                    </LinearLayout>
+                             <ImageView
+                        android:layout_width="0dp" android:scaleType="center"
+                        android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_weight="3"  android:src="@drawable/arrow"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="2dp" android:id="@+id/additemcard" android:elevation="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/adminadditem" android:weightSum="10">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_weight="3"
+                        android:padding="2dp"
+
+                        android:scaleType="center"
+                        android:src="@drawable/ic_additem" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="4" android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="Add Items" android:textSize="20sp" android:textColor="@android:color/black" />
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content" android:text="Add new services" android:textSize="11sp" android:textColor="@color/lightgreytype" android:layout_weight="3"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:src="@drawable/arrow" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="2dp" android:id="@+id/offerz" android:elevation="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/adminofferz" android:weightSum="10">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_weight="3"
+                        android:padding="2dp"
+
+                        android:scaleType="center"
+                        android:src="@drawable/offer" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="4" android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="Offer Zone" android:textSize="20sp" android:textColor="@android:color/black" />
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content" android:text="Manage your offers here" android:textSize="11sp" android:textColor="@color/lightgreytype" android:layout_weight="3"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:src="@drawable/arrow" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="2dp" android:id="@+id/usermanagement" android:elevation="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/um" android:weightSum="10">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_weight="3"
+                        android:padding="2dp"
+
+                        android:scaleType="center"
+                        android:src="@drawable/user" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="4" android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="Users" android:textSize="20sp" android:textColor="@android:color/black" />
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content" android:text="Manage your users" android:textSize="11sp" android:textColor="@color/lightgreytype" android:layout_weight="3"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:src="@drawable/arrow" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "630593503446",
+    "firebase_url": "https://sris-beauty.firebaseio.com",
+    "project_id": "sris-beauty",
+    "storage_bucket": "sris-beauty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630593503446:android:33119594657d9ea6",
+        "android_client_info": {
+          "package_name": "com.srisbeauty.srisbeauty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630593503446-p4qfhusfci99ao250p2q8o7jm67mm4i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFdWahmTEsJfDWtvUoJPMphPMzaKczQ0Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

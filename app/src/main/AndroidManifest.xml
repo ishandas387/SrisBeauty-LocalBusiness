@@ -1,0 +1,100 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.srisbeauty.srisbeauty">
+
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- if you want to load images from the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ItemDetail"
+            android:label="Item Detail" />
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_admin_activuty"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Category"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_category"
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".Cart" />
+        <activity android:name=".ViewOrders" />
+        <activity android:name=".OrderStatus" />
+        <activity
+            android:name=".AdminMenu"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Admin"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".CustomerCare"
+            android:label="@string/title_activity_customer_care"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserHub"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminAcceptReject"
+            android:label="@string/title_activity_admin_accept_reject"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UserAdd" />
+        <activity
+            android:name=".OfferManagerment"
+            android:label="Offer Zone"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddOffer"
+            android:label="@string/title_activity_add_offer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SelectCategory"
+            android:label="@string/title_activity_select_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProductActivity"
+            android:label="Services"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+</manifest>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.ishan387.testlogin.CustomerCare"
+    android:background="@color/primary"
+    android:orientation="horizontal"
+    android:gravity="center"
+    >
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/mycall"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:id="@+id/call_care"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginLeft="8dp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:text="Speak to us for immediate assistance."
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="280dp"
+        android:background="@color/primary_dark"
+        android:layout_margin="8dp"
+        />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:text="Write to us, clarify your concerns and give your valuable feedbacks."
+            />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/mymail"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:id="@+id/mail_care"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

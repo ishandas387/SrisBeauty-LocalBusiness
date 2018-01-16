@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ishan387.testlogin.AdminAcceptReject"
+    tools:showIn="@layout/activity_admin_accept_reject">
+    <com.mancj.materialsearchbar.MaterialSearchBar
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchbaradmin"
+        android:layout_alignParentTop="true"
+        app:mt_speechMode="false"
+        app:mt_hint="search for order ID" android:visibility="gone">
+
+    </com.mancj.materialsearchbar.MaterialSearchBar>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:reverseLayout="true"
+        android:id="@+id/acceptrejectorderview"></android.support.v7.widget.RecyclerView>
+    
+
+</LinearLayout>

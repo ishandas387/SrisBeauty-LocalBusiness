@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:layout_gravity="center"
+    android:background="@drawable/shapebycart"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:src="@drawable/info"
+            />
+
+     <ListView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:id="@+id/listOfitems">
+
+     </ListView>
+
+        <TextView
+            android:layout_width="match_parent" android:background="@android:color/black"
+            android:layout_height="wrap_content" android:id="@+id/addrmarker" android:text="Address: " android:textColor="@android:color/white" android:padding="3dp" android:layout_marginLeft="2dp" android:layout_marginBottom="1dp" android:layout_marginTop="2dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/address" android:padding="5dp" android:layout_marginLeft="2dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/agree"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/colorAccent"
+                android:text="Close"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

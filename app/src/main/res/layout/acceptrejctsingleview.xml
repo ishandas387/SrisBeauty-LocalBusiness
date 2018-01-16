@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="170dp" android:elevation="40dp" android:layout_marginTop="1dp"
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="158dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_marginLeft="7dp"
+
+                android:orientation="vertical"
+
+                android:padding="16dp"
+                android:showDividers="middle"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:showDividers="middle"
+                    android:weightSum="10" android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:layout_marginBottom="3dp"
+                        android:text="OrderID"
+                        android:id="@+id/orderidacceptreject"
+                        android:layout_weight="8"
+                        />
+
+                    <ImageButton
+                        android:id="@+id/acceptbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" android:src="@drawable/done" android:layout_gravity="right" android:background="@android:color/transparent" />
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:id="@+id/rejectbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:src="@drawable/close" android:layout_gravity="right" android:background="@android:color/transparent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:weightSum="9" android:layout_marginTop="15dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_weight="3"  android:orientation="vertical"
+
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"  android:textColor="@color/lightgreytype" android:textSize="12sp" android:text="DATE"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:textSize="12sp" android:text="25-10/10:00"
+                            android:id="@+id/servicetimeacceptreject"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_weight="3"  android:orientation="vertical"
+
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:textColor="@color/lightgreytype" android:textSize="12sp" android:text="STATUS"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:textSize="12sp"  android:text="25-10/10:00"
+                            android:id="@+id/orderstatusacceptreject"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"  android:layout_weight="3" android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"  android:textColor="@color/lightgreytype" android:text="PRICE"  android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/totalpriceacceptreject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:textAlignment="textEnd" android:text="Rs 2345534" android:textSize="18sp" />
+
+
+                    </LinearLayout>
+
+                    <!--  <LinearLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content" android:layout_weight="3" android:orientation="vertical">
+                          <ImageButton
+                              android:id="@+id/deletebutton"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content" android:src="@drawable/deleteicon" android:layout_gravity="right" android:background="@android:color/transparent" />
+
+                      </LinearLayout>-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:background="@android:color/darker_gray" android:orientation="horizontal" android:weightSum="10" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/customername" android:gravity="left" android:paddingLeft="3dp"  android:layout_weight="6" android:text="Name"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/ph" android:layout_weight="4" android:gravity="right" android:paddingRight="3dp" android:text="phonenumber"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
