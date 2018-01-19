@@ -53,6 +53,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
     List<CartItems> itemsInCart = new ArrayList<>();
     CartAdapter adapter;
     Button placeOrder;
+    TextView cartEmptyMessage;
     List<OrderItem> productList = new ArrayList<>();
     private FirebaseAuth mAuth;
     String addr="";
@@ -91,6 +92,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
         mAuth = FirebaseAuth.getInstance();
         selectDate =(Button) findViewById(R.id.selectdate);
         selectTime =(Button) findViewById(R.id.selecttime);
+        cartEmptyMessage =(TextView) findViewById(R.id.cartempty);
         loadListAndAdapter();
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,22 +182,31 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
 
     private void loadListAndAdapter() {
         itemsInCart = new CartDatabase(this).getCart();
-        adapter = new CartAdapter(itemsInCart,this);
-        recyclerView.setAdapter(adapter);
-
-
-        for(CartItems item : itemsInCart)
+        if(itemsInCart.isEmpty())
         {
-            OrderItem p = new OrderItem();
-            p.setPrice(Float.parseFloat(item.getPrice()));
-            p.setName(item.getProductName());
-            // p.setTime(item.getServiceTime());
-            productList.add(p);
-            t += Float.parseFloat(item.getPrice());
+            cartEmptyMessage.setVisibility(View.VISIBLE);
+            total.setText("₹ 0");
         }
-        Locale local = new Locale("en","IN");
-        NumberFormat n = NumberFormat.getCurrencyInstance(local);
-        total.setText("₹" +Float.toString(t));
+        else
+        {
+            adapter = new CartAdapter(itemsInCart,this);
+            recyclerView.setAdapter(adapter);
+
+
+            for(CartItems item : itemsInCart)
+            {
+                OrderItem p = new OrderItem();
+                p.setPrice(Float.parseFloat(item.getPrice()));
+                p.setName(item.getProductName());
+                // p.setTime(item.getServiceTime());
+                productList.add(p);
+                t += Float.parseFloat(item.getPrice());
+            }
+            Locale local = new Locale("en","IN");
+            NumberFormat n = NumberFormat.getCurrencyInstance(local);
+            total.setText("₹" +Float.toString(t));
+        }
+
     }
 
     private void placeorderMethod(String userPhoneNumber) {

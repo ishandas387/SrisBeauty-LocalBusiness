@@ -131,7 +131,17 @@ public class UserHub extends AppCompatActivity {
         {
             number = u.getNu();
         }
-        userhuaddress.setText(number+"\n"+addAt+", "+near+"\n"+city);
+        String storedAdd = number+"\n"+addAt+", "+near+"\n"+city;
+        if(storedAdd.equalsIgnoreCase("\n, \n"))
+        {
+            userhuaddress.setText("Please add your address..");
+            userhuaddress.setTextColor(getResources().getColor(R.color.fadedtype));
+        }
+        else
+        {
+
+             userhuaddress.setText(storedAdd);
+        }
             loadRecylerView(filter);
         clayout = (CollapsingToolbarLayout) findViewById(R.id.clayout);
 

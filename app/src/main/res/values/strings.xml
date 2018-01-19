@@ -118,28 +118,85 @@
     <string name="title_activity_admin_activuty">AdminActivuty</string>
     <array name="type">
 
-        <item>Special packages</item>
-        <item>Lotus Facial</item>
-        <item>Clean Up</item>
-        <item>Body Spa</item>
-        <item>Bleach Services</item>
-        <item>Make Up</item>
-        <item>Massages</item>
-        <item>Natures Professional</item>
-        <item>O3 Services</item>
-        <item>Raga Proffesionals</item>
-        <item>Rica Wax</item>
-        <item>Body Polishing</item>
-        <item>Hair Colours</item>
-        <item>Hair Cuts</item>
-        <item>Hair Spa</item>
-        <item>Manicure</item>
-        <item>Mehendi</item>
-        <item>Pedicure</item>
         <item>Saree Draping</item>
+        <item>Make up</item>
+        <item>Hair Styles</item>
+        <item>Hair cuts</item>
+        <item>Mehendi</item>
+        <item>Nail Art</item>
+        <item>Pedicure</item>
+        <item>Manicure</item>
+        <item>Hair Spa</item>
+        <item>Hair Colour</item>
+        <item>Skin Treatment</item>
+        <item>Hair Treatment</item>
+        <item>Bleach</item>
+        <item>Threading</item>
+        <item>Face Clean Up</item>
+        <item>Shahanaz Facial</item>
+        <item>Premium Facials</item>
+        <item>Popular Facials</item>
+        <item>Masks</item>
         <item>Waxing</item>
 
     </array>
+
+    <array name="facials">
+
+        <item>Bleach</item>
+        <item>Threading</item>
+        <item>Face Clean Up</item>
+        <item>Shahanaz Facial</item>
+        <item>Premium Facials</item>
+        <item>Popular Facials</item>
+        <item>Masks</item>
+
+    </array>
+
+    <array name="HairAndSkinTreatments">
+
+        <item>Hair Spa</item>
+        <item>Hair Colour</item>
+        <item>Skin Treatment</item>
+        <item>Hair Treatment</item>
+
+    </array>
+    <array name="HandsAndFeet">
+
+        <item>Mehendi</item>
+        <item>Nail Art</item>
+        <item>Pedicure</item>
+        <item>Manicure</item>
+    </array>
+
+    <array name="categorytoshow">
+
+
+        <item>Raaga Professional</item>
+        <item>Lotus Professional</item>
+        <item>Massages</item>
+        <item>Bridal Packages</item>
+        <item>Haircuts And Textures</item>
+        <item>Hands And Feet</item>
+        <item>Hair And Skin Treatments</item>
+        <item>Facials</item>
+        <item>Waxing</item>
+
+    </array>
+
+    <array name="HaircutsAndTextures">
+
+        <item>Hair Styles</item>
+        <item>Hair cuts</item>
+
+    </array>
+
+    <array name="BridalPackages">
+
+        <item>Saree Draping</item>
+        <item>Make up</item>
+    </array>
+
 
     <string name="title_activity_category">Category</string>
     <string name="dummy_button">Dummy Button</string>

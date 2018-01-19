@@ -53,4 +53,5 @@
     </array>
 
     <color name="black_overlay">#66000000</color>
+    <color name="fadedtype">#8c8c8c</color>
 </resources>

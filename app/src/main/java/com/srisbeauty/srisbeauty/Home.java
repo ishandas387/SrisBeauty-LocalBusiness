@@ -53,6 +53,7 @@ import com.srisbeauty.srisbeauty.model.UserDetails;
 
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,8 +105,9 @@ public class Home extends AppCompatActivity
                 LinearLayoutManager layoutManager = new LinearLayoutManager(this);
                 recyclerView.setLayoutManager(layoutManager);
 
-                String [] categories = getResources().getStringArray(R.array.type);
+                String [] categories = getResources().getStringArray(R.array.categorytoshow);
                 List<String> listOfCategories = Arrays.asList(categories);
+                Collections.sort(listOfCategories);
                 recyclerView.setAdapter( new CategorySelectAdapter(listOfCategories, this,isAdmin) );
 
                 if (savedInstanceState == null) {

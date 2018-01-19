@@ -187,13 +187,8 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         else {
-            Map<String,Object> pMap = new HashMap<String,Object>();
-            pMap.put("price", Float.parseFloat(itemPrice.getText().toString()));
-            pMap.put("description",itemDescription.getText().toString());
-            pMap.put("name", itemName.getText().toString());
-            pMap.put("category",category.getSelectedItem().toString());
-
-            products.child(id).updateChildren(pMap);
+            Snackbar.make(v, "Please add image", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
 
         }
     }
@@ -286,6 +281,7 @@ public class AdminActivity extends AppCompatActivity {
                     pd.dismiss();
                     Snackbar.make(v, "Product Added", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -297,14 +293,9 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         else {
-            Product product = new Product();
-            product.setId(id);
-            product.setCategory(category.getSelectedItem().toString());
-            product.setPrice(Float.parseFloat(itemPrice.getText().toString()));
-            product.setName(itemName.getText().toString());
-            product.setDescription(itemDescription.getText().toString());
-            products.child(id).setValue(product);
 
+            Snackbar.make(v, "Please add image", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
     }
 

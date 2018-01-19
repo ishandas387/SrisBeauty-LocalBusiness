@@ -52,9 +52,9 @@ public class LoginActivity extends AppCompatActivity implements
     private EditText mPasswordField;
     private ProgressBar bar;
 
-    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-    SharedPreferences.Editor editor = pref.edit();
-    private boolean isUserAddedToTable = pref.getBoolean("isUserAdded",false);
+    SharedPreferences pref ;
+    SharedPreferences.Editor editor ;
+    private boolean isUserAddedToTable= false;
 
 
     DatabaseReference users;
@@ -67,8 +67,9 @@ public class LoginActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginactivity);
-
-
+        pref =  getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        editor = pref.edit();
+        isUserAddedToTable   = pref.getBoolean("isUserAdded",false);
         // Views
       /*  mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
@@ -108,6 +109,8 @@ public class LoginActivity extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+        pref =  getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        editor = pref.edit();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(null != currentUser)
@@ -173,7 +176,7 @@ public class LoginActivity extends AppCompatActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "Verification email sent to your mail id",
+                            Toast.makeText(getApplicationContext(), "Verification email sent to your mail id",
                                     Toast.LENGTH_LONG  ).show();
                             sendEmailVerification();
                            /* Intent i = getIntent();
@@ -182,7 +185,7 @@ public class LoginActivity extends AppCompatActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             Intent i = getIntent();
                             finish();
@@ -226,14 +229,14 @@ public class LoginActivity extends AppCompatActivity implements
                                     }
                                     else
                                     {
-                                        Toast.makeText(LoginActivity.this, "Please verify your email",
+                                        Toast.makeText(getApplicationContext(), "Please verify your email",
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.makeText(getApplicationContext(), "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                     updateUI(null);
                                 }
@@ -278,12 +281,12 @@ public class LoginActivity extends AppCompatActivity implements
                       //  findViewById(R.id.verify_email_button).setEnabled(true);
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this,
+                            Toast.makeText(getApplicationContext(),
                                     "Verification email sent to " + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e(TAG, "sendEmailVerification", task.getException());
-                            Toast.makeText(LoginActivity.this,
+                            Toast.makeText(getApplicationContext(),
                                     "Failed to send verification email.",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -426,7 +429,7 @@ public class LoginActivity extends AppCompatActivity implements
             }
             else
             {
-                Toast.makeText(LoginActivity.this, "Offline ! Please check connectivity.",
+                Toast.makeText(getApplicationContext(), "Offline ! Please check connectivity.",
                         Toast.LENGTH_SHORT  ).show();
 
             }
@@ -437,7 +440,7 @@ public class LoginActivity extends AppCompatActivity implements
             }
             else
             {
-                Toast.makeText(LoginActivity.this, "Offline ! Please check connectivity.",
+                Toast.makeText(getApplicationContext(), "Offline ! Please check connectivity.",
                         Toast.LENGTH_SHORT  ).show();
             }
         }
@@ -447,7 +450,7 @@ public class LoginActivity extends AppCompatActivity implements
                 signInWithGoogle();
             }
             else {
-                Toast.makeText(LoginActivity.this, "Offline ! Please check connectivity.",
+                Toast.makeText(getApplicationContext(), "Offline ! Please check connectivity.",
                         Toast.LENGTH_SHORT  ).show();
             }
             /*else if (i == R.id.sign_out_button) {

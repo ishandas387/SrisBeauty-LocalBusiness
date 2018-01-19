@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:background="@color/grey_300"
-    tools:context="com.ishan387.testlogin.Home"
+    tools:context="com.srisbeauty.srisbeauty.Home"
     tools:showIn="@layout/app_bar_home"
    >
         <FrameLayout
@@ -36,10 +36,10 @@
             />
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
+
              android:id="@+id/categoryselect" android:layout_below="@+id/imageoffersllider">
 
         </android.support.v7.widget.RecyclerView>

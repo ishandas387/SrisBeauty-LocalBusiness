@@ -2,6 +2,7 @@ package com.srisbeauty.srisbeauty.model;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.srisbeauty.srisbeauty.R;
@@ -15,6 +16,7 @@ import com.srisbeauty.srisbeauty.onClickInterface;
 public class CategorySelectViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView categoryName;
+    public ImageView banner;
 
 
     public void setItemClickListener(onClickInterface itemClickListener) {
@@ -25,6 +27,7 @@ public class CategorySelectViewHolder extends RecyclerView.ViewHolder implements
     public CategorySelectViewHolder(View itemView) {
         super(itemView);
         categoryName = (TextView) itemView.findViewById(R.id.categoryname);
+        banner = (ImageView) itemView.findViewById(R.id.banner);
 
         itemView.setOnClickListener(this);
     }
