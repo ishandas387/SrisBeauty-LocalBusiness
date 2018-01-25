@@ -52,7 +52,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminActivity"
-            android:label="@string/title_activity_admin_activuty"
+            android:label="Add item"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Category"
@@ -94,8 +94,9 @@
         <activity
             android:name=".ProductActivity"
             android:label="Services"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SubCategoryActivity"></activity>
+        <activity android:name=".SubCategoryActivity" android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

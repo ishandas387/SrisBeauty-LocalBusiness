@@ -23,9 +23,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -94,6 +97,7 @@ public class ProductActivity extends AppCompatActivity {
 
           query= products.orderByChild("category").equalTo(categoryName);
         }
+
         storage = FirebaseStorage.getInstance().getReference();
         materialSearchBar =(MaterialSearchBar) findViewById(R.id.searchbar);
         materialSearchBar.setSpeechMode(false);

@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context="com.ishan387.testlogin.AddOffer"
+        tools:context="com.srisbeauty.srisbeauty.AddOffer"
         android:background="@android:color/darker_gray" android:layout_marginTop="10dp">
 
 

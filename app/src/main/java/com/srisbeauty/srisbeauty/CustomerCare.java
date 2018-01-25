@@ -47,8 +47,8 @@ public class CustomerCare extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{ "mejablu@gmail.com","jerseytownindia@gmail.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "Customers Mail");
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{ "srisbeauty2989@gmail.com"});
+                email.putExtra(Intent.EXTRA_SUBJECT, "Customer's Mail");
                 email.putExtra(Intent.EXTRA_TEXT, "Sent From Android App\n");
                 //need this to prompts email client only
                 email.setType("message/rfc822");

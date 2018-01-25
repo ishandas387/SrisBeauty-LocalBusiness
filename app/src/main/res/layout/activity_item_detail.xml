@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ishan387.testlogin.ItemDetail">
+    tools:context="com.srisbeauty.srisbeauty.ItemDetail">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -155,15 +155,15 @@
 
 
                 <TextView
-                    android:textColor="@android:color/black"
+                    android:textColor="#8c8c8c"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/itemdescription" android:textSize="16sp" android:text="Item description"/>
+                    android:layout_height="wrap_content" android:id="@+id/itemdescription" android:textSize="13sp" android:padding="5dp" android:layout_marginLeft="3dp" android:layout_marginRight="3dp" android:text="Item description"/>
             </LinearLayout>
 
             <TextView
                 android:textColor="#8c8c8c"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="15sp"  android:text="Recent reviews"/>
+                android:layout_width="wrap_content" android:background="@color/grey_300"
+                android:layout_height="wrap_content" android:id="@+id/recentreviewtag" android:textSize="15sp"  android:text="Recent reviews"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

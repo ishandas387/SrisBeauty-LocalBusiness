@@ -12,13 +12,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import com.srisbeauty.srisbeauty.model.CartAdapter;
@@ -33,10 +37,14 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.StringJoiner;
 
 /**
  * User cart and cart management. Powered by sqlite. And order placement with date/time validations/
@@ -82,6 +90,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
 
         database = FirebaseDatabase.getInstance();
         orderrequest = database.getReference("Orders");
+        //orderHistory = database.getReference("OrderHistory");
 
         recyclerView =(RecyclerView) findViewById(R.id.cartlist);
         recyclerView.setHasFixedSize(true);
@@ -178,6 +187,21 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
             }
 
         });
+
+        /*orderHistory.orderByChild("uId").equalTo(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               if(dataSnapshot.hasChildren())
+               {
+
+               }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        })*/
     }
 
     private void loadListAndAdapter() {
@@ -239,7 +263,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
             if(currentUser!=null)
             {
                 o.setEmail(currentUser.getEmail());
-                if(currentUser.getDisplayName() != null || !currentUser.getDisplayName().isEmpty())
+                if(currentUser.getDisplayName() != null && !currentUser.getDisplayName().isEmpty())
                 {
                     o.setUserName(currentUser.getDisplayName());
                 }
@@ -264,15 +288,18 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
             o.setServiceTime(date+" @ "+time);
             o.setUserPhoneNumber(userPhoneNumber);
             Float tot =0.0f;
+            String listOfProductNames;
             for(OrderItem pt : productList)
             {
                 tot += pt.getPrice();
+               // listOfProductNames = listOfProductNames.c
             }
             o.setTotal(tot.toString());
 
             o.setAddress(addr);
             o.setUserToken(FirebaseInstanceId.getInstance().getToken());
             orderrequest.child(o.getOrderId()).setValue(o);
+            //orderHistory.child(currentUser.getUid()).setValue()
             new CartDatabase(getBaseContext()).cleanCart();
             Toast.makeText(Cart.this,"Order placed",Toast.LENGTH_LONG).show();
             finish();
@@ -354,6 +381,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
+
         String m="";
         switch(monthOfYear)
         {
@@ -394,13 +422,37 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
                 m="Dec";
                 break;
         }
+        String dayOfWeek="";
+        try
+        {
+            SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+            Date date = new Date(year, monthOfYear, dayOfMonth-1);
+            dayOfWeek = simpledateformat.format(date);
+            dayOfWeek = dayOfWeek.substring(0,3);
 
-        selectDate.setText(m+"-"+dayOfMonth);
+        }
+        catch (Exception e)
+        {
+            //log
+        }
+
+        selectDate.setText(dayOfWeek+", "+m+"-"+dayOfMonth);
     }
+
+
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        selectTime.setText(hourOfDay+":"+minute);
+        Date date = null;
+        SimpleDateFormat parseFormat  = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat displayFormat= new SimpleDateFormat("hh:mm a");
+        try {
+             date = parseFormat.parse(hourOfDay+":"+minute);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //selectTime.setText(hourOfDay+":"+minute);
+        selectTime.setText(displayFormat.format(date));
 
     }
 }

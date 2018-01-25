@@ -63,7 +63,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_activuty);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,7 @@ public class AdminActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         if(!Util.isConnectedToInternet(this))
         {
             Toast.makeText(AdminActivity.this, "Offline ! Please check connectivity.",
@@ -243,12 +243,13 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void addItemToDb(View view) {
+
         final View v = view;
 
 
         final String id = products.push().getKey();
          String[] downloadUrl = new String[3];
-        if(bytearray != null)
+        if(bytearray != null && isPriceValid(itemPrice.getText().toString()))
         {
             final ProgressDialog pd = new ProgressDialog(this);
             pd.setCanceledOnTouchOutside(false);
@@ -281,6 +282,10 @@ public class AdminActivity extends AppCompatActivity {
                     pd.dismiss();
                     Snackbar.make(v, "Product Added", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+                    itemDescription.setText("");
+                    itemName.setText("");
+                    itemPrice.setText("");
+                    upload.setText("Select Image");
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -294,9 +299,27 @@ public class AdminActivity extends AppCompatActivity {
 
         else {
 
-            Snackbar.make(v, "Please add image", Snackbar.LENGTH_LONG)
+            Snackbar.make(v, "Please add image / a valid price", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
+    }
+
+    private boolean isPriceValid(String s) {
+
+        if(s == null || s.isEmpty() )
+        {
+            return false;
+        }
+
+        try{
+            Float.parseFloat(s);
+            return true;
+        }
+        catch(NumberFormatException ne)
+        {
+            return false;
+        }
+
     }
 
 }

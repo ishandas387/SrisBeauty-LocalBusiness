@@ -57,7 +57,7 @@ import java.util.Map;
 public class ItemDetail extends AppCompatActivity implements RatingDialogListener {
 
 
-    TextView name,price,reviewTotal,itemdescription;
+    TextView name,price,reviewTotal,itemdescription,recentreviewTag;
     ImageView bgi;
     CollapsingToolbarLayout clayout;
     FloatingActionButton fab;
@@ -94,6 +94,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         adminDelete =(Button) findViewById(R.id.adminremoveitem);
         adminEdit =(Button) findViewById(R.id.adminedititem);
         reviewTotal = (TextView) findViewById(R.id.reviewtotal);
+        recentreviewTag = (TextView) findViewById(R.id.recentreviewtag);
         itemdescription = (TextView) findViewById(R.id.itemdescription);
         user = mAuth.getCurrentUser();
         if(!Util.isConnectedToInternet(this))
@@ -131,6 +132,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         }
         if (!productId.isEmpty()) {
             getProductDetails();
+            userHasOrdered(productName,user.getEmail());
            /* if(!userHasOrdered(productName,user.getEmail()))
             {
                 ratingButton.setEnabled(false);
@@ -187,8 +189,13 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         pastorders.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Object> td = (HashMap<String,Object>) dataSnapshot.getValue();
+                Map<String, Map<String,Object>> td = (Map<String, Map<String, Object>>) dataSnapshot.getValue();
+                    for(String key : td.keySet())
+                    {
+                        Map<String,Object> map2 = new HashMap<>();
+                      //  map2.put(td.get(key));
 
+                    }
                     for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                         Orders userOrder = postSnapshot.getValue(Orders.class);
                         userOrders.add(userOrder);
@@ -317,8 +324,16 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
 
     private void settingListOfReviews(List<Review> currentReviewList) {
 
-        ReviewAdapter adapter = new ReviewAdapter(currentReviewList, this,isAdmin);
-        recyclerView.setAdapter(adapter);
+        if(currentReviewList.isEmpty())
+        {
+            recentreviewTag.setVisibility(View.GONE);
+        }
+        else
+        {
+
+            ReviewAdapter adapter = new ReviewAdapter(currentReviewList, this,isAdmin);
+            recyclerView.setAdapter(adapter);
+        }
 
     }
 

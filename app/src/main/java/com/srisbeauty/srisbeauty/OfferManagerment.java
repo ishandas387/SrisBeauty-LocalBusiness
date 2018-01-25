@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.srisbeauty.srisbeauty.model.CartItems;
 import com.srisbeauty.srisbeauty.model.OfferZoneViewHolder;
 import com.srisbeauty.srisbeauty.model.Offers;
@@ -103,6 +105,10 @@ public class OfferManagerment extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                             offers.child(model.getOfferId()).removeValue();
+                        StorageReference storage = FirebaseStorage.getInstance().getReference();
+                        final StorageReference filePathStorage = storage.child("offerimages").child(model.getOfferName());
+                        if(null != filePathStorage)
+                            filePathStorage.delete();
                             notifyItemRemoved(position);
                     }
                 });

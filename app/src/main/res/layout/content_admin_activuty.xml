@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ishan387.testlogin.AdminActivity"
+    tools:context="com.srisbeauty.srisbeauty.AdminActivity"
     tools:showIn="@layout/activity_admin_activuty">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -38,9 +43,9 @@
             >
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/editText"
+                android:layout_height="300dp" android:id="@+id/editText"
+                android:inputType="textMultiLine"
                 android:hint="Description"
-                android:inputType="text"
                 android:text=""/>
 
 
@@ -107,6 +112,7 @@
 
 
     </LinearLayout>
+    </ScrollView>
    <!-- <LinearLayout
         android:layout_width="344dp"
         android:layout_height="wrap_content"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_300"
-    tools:context="com.ishan387.testlogin.AdminMenu" >
+    tools:context="com.srisbeauty.srisbeauty.AdminMenu" >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

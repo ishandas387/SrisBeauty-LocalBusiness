@@ -46,12 +46,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if(notificationTitle.contains("offer"))
         {
 
-            intent.setComponent(new ComponentName("com.ishan387.testlogin.OfferManagerment","OfferManagerment.class"));
+            intent.setComponent(new ComponentName("com.srisbeauty.srisbeauty.OfferManagerment","OfferManagerment.class"));
+
+        }
+        else if(notificationTitle.contains("order"))
+        {
+            intent.setComponent(new ComponentName("com.srisbeauty.srisbeauty.AdminAcceptReject","AdminAcceptReject.class"));
 
         }
         else
         {
-            intent.setComponent(new ComponentName("com.ishan387.testlogin.UserHub","UserHub.class"));
+            intent.setComponent(new ComponentName("com.srisbeauty.srisbeauty.UserHub","UserHub.class"));
         }
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -59,7 +64,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
        // Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                 .setAutoCancel(true)   //Automatically delete the notification
-                .setSmallIcon(R.mipmap.ic_launcher) //Notification icon
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setBadgeIconType(R.mipmap.ic_launcher)
+                //Notification icon
                 .setContentIntent(pendingIntent)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationBody);

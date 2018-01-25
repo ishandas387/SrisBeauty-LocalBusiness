@@ -44,6 +44,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.StorageReference;
 import com.srisbeauty.srisbeauty.model.CategorySelectAdapter;
 import com.srisbeauty.srisbeauty.model.Offers;
@@ -97,6 +98,7 @@ public class Home extends AppCompatActivity
                 imgProfile = (ImageView) navHeader.findViewById(R.id.imageprofile);
                 // SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.imphoto);
                 offerImageLayout = (SliderLayout) findViewById(R.id.imageoffersllider);
+
 
                 username =(TextView) navHeader.findViewById(R.id.name);
                 useremail = (TextView) navHeader.findViewById(R.id.useremail);
@@ -204,14 +206,9 @@ public class Home extends AppCompatActivity
 
                 //set up admin menu;
                 setUpAdmin();
-                offerImageLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(),OfferManagerment.class);
-                        startActivity(i);
 
-                    }
-                });
+
+
                 //offerImageLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
                 offerImageLayout.setDuration(5000);
 
@@ -239,6 +236,15 @@ public class Home extends AppCompatActivity
                     .putString("extra",name);*/
 
             offerImageLayout.addSlider(textSliderView);
+            offerImageLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(Home.this, "pela",
+                            Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(),OfferManagerment.class);
+                    startActivity(i);
+                }
+            });
         }
 
     }
@@ -265,10 +271,12 @@ public class Home extends AppCompatActivity
                                 {
 
                                     nav_Menu.findItem(R.id.nav_admin).setVisible(false);
+                                    FirebaseMessaging.getInstance().unsubscribeFromTopic("adminnft");
                                 }
                                 else
                                 {
                                     nav_Menu.findItem(R.id.nav_admin).setVisible(true);
+                                    FirebaseMessaging.getInstance().subscribeToTopic("adminnft");
                                 }
                                 editor.putBoolean("isAdmin", userDetail.isAdminstrator());
                                 editor.commit();
