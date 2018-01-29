@@ -16,6 +16,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -48,6 +49,7 @@ public class ProductActivity extends AppCompatActivity {
     String categoryName;
     boolean isAdmin;
     StorageReference storage;
+    Spinner bleachCategory;
 
 
     DatabaseReference products;
@@ -66,6 +68,7 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        bleachCategory = (Spinner) findViewById(R.id.bleachcategory);
         FirebaseRecyclerAdapter<Product, ProductViewHolder> searchAdapter;
         if(!Util.isConnectedToInternet(this))
         {
@@ -88,6 +91,10 @@ public class ProductActivity extends AppCompatActivity {
         } else {
             categoryName= (String) savedInstanceState.getSerializable("categoryname");
 
+        }
+        if(categoryName.equalsIgnoreCase("Bleach"))
+        {
+            bleachCategory.setVisibility(View.VISIBLE);
         }
 
         final MaterialSearchBar materialSearchBar;
@@ -112,9 +119,9 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        pd = new ProgressDialog(this);
+       /* pd = new ProgressDialog(this);
         pd.setMessage("Getting items");
-        pd.show();
+        pd.show();*/
         loadRecylerView(query);
         materialSearchBar.setLastSuggestions(suggestionList);
            materialSearchBar.addTextChangeListener(new TextWatcher() {
@@ -162,7 +169,7 @@ public class ProductActivity extends AppCompatActivity {
 
             }
         });
-        pd.hide();
+        //pd.hide();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -244,6 +251,11 @@ public class ProductActivity extends AppCompatActivity {
                         Intent i = new Intent(ProductActivity.this,ItemDetail.class);
                         i.putExtra("productId",adapter.getRef(position).getKey());
                         i.putExtra("pName", m.getName());
+                        if(categoryName.equalsIgnoreCase("Bleach"))
+                        {
+
+                            i.putExtra("bleachCategory",bleachCategory.getSelectedItem().toString());
+                        }
                         startActivity(i);
                     }
                 });
@@ -272,6 +284,15 @@ public class ProductActivity extends AppCompatActivity {
         if (id == R.id.home) {
             finish();
         }
+        if (id == R.id.cart) {
+            Intent launchNextActivity;
+            launchNextActivity = new Intent(ProductActivity.this, Cart.class);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(launchNextActivity);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

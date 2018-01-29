@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ishan387.testlogin.ItemDetail">
+    tools:context="com.srisbeauty.srisbeauty.UserHub">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -132,11 +132,12 @@
         android:id="@+id/editupdate"
         android:src="@drawable/editicont"
         android:layout_marginRight="3dp"
-
+        android:layout_marginTop="110dp"
+        android:layout_gravity="center_vertical"
         android:elevation="6dp"
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|right"/>
+        app:layout_anchorGravity="center_vertical|right"/>
 
 
 

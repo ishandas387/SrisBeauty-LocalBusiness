@@ -17,7 +17,7 @@ import com.srisbeauty.srisbeauty.onClickInterface;
 public class OrderHistoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView orderId, orderPrice, orderTime,status;
-    public Button addToCal;
+    public Button addToCal,cancelorder;
     public LinearLayout colorLayoutLayout;
 
     public void setItemClickListener(onClickInterface itemClickListener) {
@@ -32,6 +32,7 @@ public class OrderHistoryViewHolder extends RecyclerView.ViewHolder implements V
         orderTime = (TextView) itemView.findViewById(R.id.servicetime);
         status = (TextView) itemView.findViewById(R.id.orderstatus);
         addToCal=(Button) itemView.findViewById(R.id.addtocalendar);
+        cancelorder=(Button) itemView.findViewById(R.id.cancelorder);
         colorLayoutLayout = (LinearLayout)  itemView.findViewById(R.id.colorlayout);
         itemView.setOnClickListener(this);
     }

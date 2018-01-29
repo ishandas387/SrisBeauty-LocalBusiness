@@ -42,10 +42,11 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ItemDetail"
-            android:label="Item Detail" />
+            android:label="Item Detail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
@@ -86,17 +87,27 @@
         <activity
             android:name=".AddOffer"
             android:label="@string/title_activity_add_offer"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SelectCategory"
             android:label="@string/title_activity_select_category"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ProductActivity"
             android:label="Services"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SubCategoryActivity" android:screenOrientation="portrait" ></activity>
+        <activity
+            android:name=".SubCategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutUs"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="About us"
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".Abtus"></activity>
     </application>
 
 </manifest>

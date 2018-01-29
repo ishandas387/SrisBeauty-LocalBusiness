@@ -7,12 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -47,6 +47,7 @@ public class AdminActivity extends AppCompatActivity {
     private EditText itemDescription;
     private EditText itemPrice;
     Button save,upload;
+    CheckBox hasSubCategories;
     boolean isUpdate = false;
 
     Product productPassed;
@@ -81,6 +82,7 @@ public class AdminActivity extends AppCompatActivity {
 
         itemName = (EditText) findViewById(R.id.field_service);
         itemDescription = (EditText) findViewById(R.id.editText);
+        hasSubCategories = (CheckBox) findViewById(R.id.hassubcategories);
         category = (Spinner) findViewById(R.id.categoryspin);
         itemPrice = (EditText) findViewById(R.id.price);
         save = (Button) findViewById(R.id.saveitem);
@@ -169,6 +171,16 @@ public class AdminActivity extends AppCompatActivity {
                     pMap.put("price", Float.parseFloat(itemPrice.getText().toString()));
                     pMap.put("description",itemDescription.getText().toString());
                     pMap.put("name", itemName.getText().toString());
+                    if(hasSubCategories.isChecked())
+                    {
+
+                        pMap.put("hasSubCategories", true);
+                    }
+                    else
+                    {
+                        pMap.put("hasSubCategories", false);
+                    }
+
                     pMap.put("category",category.getSelectedItem().toString());
                     pMap.put("imageUrl",urlD);
                     products.child(id).updateChildren(pMap);
@@ -187,9 +199,17 @@ public class AdminActivity extends AppCompatActivity {
         }
 
         else {
-            Snackbar.make(v, "Please add image", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
 
+            Map<String,Object> pMap = new HashMap<String,Object>();
+                     pMap.put("price", Float.parseFloat(itemPrice.getText().toString()));
+                        pMap.put("description",itemDescription.getText().toString());
+                        pMap.put("name", itemName.getText().toString());
+                        pMap.put("category",category.getSelectedItem().toString());
+
+                        products.child(id).updateChildren(pMap);
+            /*Snackbar.make(v, "Please add image", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+*/
         }
     }
 
@@ -203,6 +223,14 @@ public class AdminActivity extends AppCompatActivity {
         itemPrice.setText(Float.toString(productPassed.getPrice()));
         itemDescription.setText(productPassed.getDescription());
         category.setSelection(index);
+        if (productPassed.isHavingSubCategories())
+        {
+            hasSubCategories.setChecked(true);
+        }
+        else
+        {
+            hasSubCategories.setChecked(false);
+        }
         upload.setText("Change Image");
 
 
@@ -278,6 +306,16 @@ public class AdminActivity extends AppCompatActivity {
                     product.setName(itemName.getText().toString());
                     product.setDescription(itemDescription.getText().toString());
                     product.setImageUrl(urlD);
+                    if(hasSubCategories.isChecked())
+                    {
+
+                        product.setHavingSubCategories(true);
+                    }
+                    else
+                    {
+                        product.setHavingSubCategories(false);
+                    }
+
                     products.child(id).setValue(product);
                     pd.dismiss();
                     Snackbar.make(v, "Product Added", Snackbar.LENGTH_LONG)

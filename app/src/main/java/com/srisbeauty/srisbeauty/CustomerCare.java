@@ -29,7 +29,7 @@ public class CustomerCare extends AppCompatActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "111111111123445"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "918367402989"));
                 if (ActivityCompat.checkSelfPermission(CustomerCare.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(CustomerCare.this, "Authorize this app to make calls", Toast.LENGTH_SHORT).show();
                     ActivityCompat.requestPermissions(CustomerCare.this, new String[]{Manifest.permission.CALL_PHONE},1);

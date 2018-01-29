@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.model.GlideUrl;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.microedition.khronos.opengles.GL;
 
 /**
  * User hub, Address mdification, order history
@@ -93,8 +96,10 @@ public class UserHub extends AppCompatActivity {
 
                     Glide.with(this).load(url)
                             .crossFade()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .diskCacheStrategy(DiskCacheStrategy.RESULT)
                             .into(profile);
+
+                    new GlideUrl(url);
                 }
             }
         }
@@ -167,6 +172,7 @@ public class UserHub extends AppCompatActivity {
                 {
                     statusSet="Placed";
                     viewHolder.addToCal.setVisibility(View.GONE);
+                    viewHolder.cancelorder.setVisibility(View.VISIBLE);
                 }
                 else if(model.getStatus() == 1)
                 {
@@ -177,7 +183,19 @@ public class UserHub extends AppCompatActivity {
                     statusSet="Rejected";
                     viewHolder.addToCal.setVisibility(View.GONE);
                 }
+                else if (model.getStatus() == 4)
+                {
+                    statusSet="Cancelled";
+                    viewHolder.addToCal.setVisibility(View.GONE);
+                }
                 viewHolder.status.setText(statusSet);
+                viewHolder.cancelorder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        model.setStatus(4);
+                        orders.child(model.getOrderId()).setValue(model);
+                    }
+                });
                 viewHolder.addToCal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -196,6 +214,7 @@ public class UserHub extends AppCompatActivity {
                             showAlertDialogueForCal(model);
                         }
                     }
+
                 });
 
                 viewHolder.setItemClickListener(new onClickInterface() {

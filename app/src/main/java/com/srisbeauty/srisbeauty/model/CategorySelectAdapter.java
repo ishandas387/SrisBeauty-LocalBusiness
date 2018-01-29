@@ -87,7 +87,7 @@ public class CategorySelectAdapter extends RecyclerView.Adapter<CategorySelectVi
                     .bitmapTransform(new CircleTransform(this))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgProfile);*/
-           Glide.with(ctx).load(Integer.parseInt(categoryImages.get(lisData.get(position)))).diskCacheStrategy(DiskCacheStrategy.ALL)
+           Glide.with(ctx).load(Integer.parseInt(categoryImages.get(lisData.get(position)))).diskCacheStrategy(DiskCacheStrategy.RESULT)
                    .into(holder.banner);
             //holder.banner.setImageResource(Integer.parseInt(categoryImages.get(lisData.get(position))));
         }

@@ -16,6 +16,31 @@ public class Product implements Serializable {
     String category;
     String imageUrl;
 
+    float price;
+
+    List<Review> reviewList;
+    boolean havingSubCategories;
+
+    public Product(String reference, String name, String description, String category, String imageUrl, float price, List<Review> reviewList, boolean havingSubCategories) {
+        this.reference = reference;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.reviewList = reviewList;
+        this.havingSubCategories = havingSubCategories;
+    }
+
+    public boolean isHavingSubCategories() {
+
+        return havingSubCategories;
+    }
+
+    public void setHavingSubCategories(boolean havingSubCategories) {
+        this.havingSubCategories = havingSubCategories;
+    }
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -24,8 +49,6 @@ public class Product implements Serializable {
 
         return imageUrl;
     }
-
-    float price;
 
     public Product(String id, String name, String description, String category, String imageUrl, float price, List<Review> reviewList) {
         this.reference = id;
@@ -36,8 +59,6 @@ public class Product implements Serializable {
         this.price = price;
         this.reviewList = reviewList;
     }
-
-    List<Review> reviewList;
 
     public void setPrice(float price) {
         this.price = price;

@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.LocalBroadcastManager;
@@ -188,11 +189,12 @@ public class Home extends AppCompatActivity
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(url_maps!= null && !url_maps.isEmpty())
                         {
+                            offerImageLayout.setVisibility(View.VISIBLE);
                             loadBannerWithOfferImages();
                         }
                         else
                         {
-                            offerImageLayout.setVisibility(View.GONE);
+
                         }
                     }
 
@@ -309,14 +311,34 @@ public class Home extends AppCompatActivity
 
         }
     };
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                finish();
+            }
         }
+
+
+
+
+            this.doubleBackToExitPressedOnce = true;
+            //Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
+
     }
 
     @Override
@@ -399,9 +421,9 @@ public class Home extends AppCompatActivity
 
 
         }
-        else if (id ==R.id.category)
+        else if (id ==R.id.about_us)
         {
-            Intent i = new Intent(getApplicationContext(),UserHub.class);
+            Intent i = new Intent(getApplicationContext(),Abtus.class);
             startActivity(i);
         }
 
@@ -504,7 +526,7 @@ public class Home extends AppCompatActivity
                     .crossFade()
                     .thumbnail(0.75f)
                     .bitmapTransform(new CircleTransform(this))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .into(imgProfile);
         }
         else

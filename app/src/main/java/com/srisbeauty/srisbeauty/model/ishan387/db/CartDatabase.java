@@ -54,6 +54,7 @@ public class CartDatabase extends SQLiteAssetHelper {
     public void addToCart(CartItems item)
     {
         SQLiteDatabase db = getReadableDatabase();
+
         String query = String.format("INSERT INTO SBCART(productid,productname,price,servicetime) VALUES('%s','%s','%s','%s')",
 
         item.getProductId(), item.getProductName(),item.getPrice(),item.getServiceTime());

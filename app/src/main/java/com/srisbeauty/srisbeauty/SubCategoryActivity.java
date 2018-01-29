@@ -1,9 +1,12 @@
 package com.srisbeauty.srisbeauty;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.srisbeauty.srisbeauty.model.CategorySelectAdapter;
 import com.srisbeauty.srisbeauty.model.ishan387.common.Constants;
@@ -15,6 +18,38 @@ import java.util.List;
 public class SubCategoryActivity extends AppCompatActivity {
 String categoryName;
 RecyclerView recyclerView;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.productpagemenu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.home) {
+            Intent launchNextActivity;
+            launchNextActivity = new Intent(SubCategoryActivity.this, Home.class);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(launchNextActivity);
+        }
+        else if (id == R.id.cart) {
+            Intent launchNextActivity;
+            launchNextActivity = new Intent(SubCategoryActivity.this, Cart.class);
+
+            startActivity(launchNextActivity);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

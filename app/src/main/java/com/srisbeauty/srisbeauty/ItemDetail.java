@@ -11,11 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +41,7 @@ import com.srisbeauty.srisbeauty.model.Orders;
 import com.srisbeauty.srisbeauty.model.Product;
 import com.srisbeauty.srisbeauty.model.Review;
 import com.srisbeauty.srisbeauty.model.ReviewAdapter;
+import com.srisbeauty.srisbeauty.model.Sb;
 import com.srisbeauty.srisbeauty.model.UserDetails;
 import com.srisbeauty.srisbeauty.model.Users;
 import com.srisbeauty.srisbeauty.model.ishan387.common.Util;
@@ -50,6 +56,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * Item detail page, User to add to cart, view reviews and add reviews. Admin to edit and delete items.
@@ -57,13 +64,13 @@ import java.util.Map;
 public class ItemDetail extends AppCompatActivity implements RatingDialogListener {
 
 
-    TextView name,price,reviewTotal,itemdescription,recentreviewTag;
+    TextView name,price,reviewTotal,itemdescription,recentreviewTag,spinMsg;
     ImageView bgi;
     CollapsingToolbarLayout clayout;
     FloatingActionButton fab;
-    String productId,productName;
+    String productId,productName,bleachCategory;
     FirebaseDatabase products;
-    DatabaseReference prod,pastorders;
+    DatabaseReference prod,pastorders,subcategories;
     Product p;
     RatingBar ratingbar;
     FloatingActionButton ratingButton;
@@ -74,7 +81,9 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
     Button adminEdit,adminDelete;
     UserDetails userDetail;
     DataSnapshot users;
+    Spinner subcategorySpin;
     boolean isAdmin = false;
+    Map<String,String> subCategoryMap = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +93,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         products = FirebaseDatabase.getInstance();
         prod = products.getReference("Products");
         pastorders = products.getReference("Orders");
-
+        subcategories = products.getReference("SubCategories");
         fab = (FloatingActionButton) findViewById(R.id.cart);
         name = (TextView) findViewById(R.id.name);
         price =(TextView) findViewById(R.id.itemdetail_price);
@@ -96,6 +105,8 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         reviewTotal = (TextView) findViewById(R.id.reviewtotal);
         recentreviewTag = (TextView) findViewById(R.id.recentreviewtag);
         itemdescription = (TextView) findViewById(R.id.itemdescription);
+        subcategorySpin =(Spinner) findViewById(R.id.sbcategoryspin);
+        spinMsg =(TextView) findViewById(R.id.spinmsg);
         user = mAuth.getCurrentUser();
         if(!Util.isConnectedToInternet(this))
         {
@@ -128,17 +139,33 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         if (getIntent() != null) {
             productId = getIntent().getStringExtra("productId");
             productName = getIntent().getStringExtra("pName");
+            bleachCategory = getIntent().getStringExtra("bleachCategory");
 
         }
         if (!productId.isEmpty()) {
             getProductDetails();
-            userHasOrdered(productName,user.getEmail());
+           // userHasOrdered(productName,user.getEmail());
            /* if(!userHasOrdered(productName,user.getEmail()))
             {
                 ratingButton.setEnabled(false);
             }*/
 
         }
+        subcategorySpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String catgName = parent.getItemAtPosition(position).toString();
+                if(subCategoryMap.containsKey(catgName))
+                {
+                    price.setText("₹"+subCategoryMap.get(catgName));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
        isAdmin= pref.getBoolean("isAdmin",false);
         if(!isAdmin)
@@ -156,7 +183,19 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                 if(count ==0)
 
                 {
-                    CartItems cartItem = new CartItems(productId, p.getName(), Float.toString(p.getPrice()), serviceDate + "/" + serviceTime);
+                    String pName = p.getName();
+                    String pPrice = Float.toString(p.getPrice());
+                    if(bleachCategory != null && !bleachCategory.isEmpty())
+                    {
+                        pName = p.getName()+" : "+bleachCategory;
+                    }
+                    else if(p.isHavingSubCategories())
+                    {
+                        pName = p.getName()+ " : "+subcategorySpin.getSelectedItem().toString();
+                        pPrice = price.getText().toString();
+
+                    }
+                    CartItems cartItem = new CartItems(productId, pName, Float.toString(p.getPrice()), serviceDate + "/" + serviceTime);
                     new CartDatabase(getBaseContext()).addToCart(cartItem);
                     Toast.makeText(ItemDetail.this, "Added to cart",
                             Toast.LENGTH_SHORT).show();
@@ -310,8 +349,48 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                          }
                          settingListOfReviews(currentReviewList);
                      }
+                     if(p.isHavingSubCategories())
+                     {
+                         setSpinnerForSubCategories(p.getName());
+                     }
                  }
 
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setSpinnerForSubCategories(String name) {
+        subcategories.child(name).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Sb x = dataSnapshot.getValue(Sb.class);
+                if (!x.getSb().isEmpty())
+                {
+                    //test2-23,tes-50
+                    //split by ,
+                    StringTokenizer stringTokenizer = new StringTokenizer(x.getSb(),",");
+                    while(stringTokenizer.hasMoreTokens())
+                    {
+                        //test2-23
+                        //tes-50
+                      String [] sbctgPrice = stringTokenizer.nextToken().split("-");
+                      subCategoryMap.put(sbctgPrice[0],sbctgPrice[1]);
+                    }
+                    List<String> subcategoriesName = new ArrayList<>();
+                    subcategoriesName.addAll(subCategoryMap.keySet());
+                    subcategorySpin.setVisibility(View.VISIBLE);
+                    spinMsg.setVisibility(View.VISIBLE);
+                    ArrayAdapter<String> adapter =
+                            new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, subcategoriesName );
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    subcategorySpin.setAdapter(adapter);
+                }
             }
 
             @Override
@@ -324,13 +403,13 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
 
     private void settingListOfReviews(List<Review> currentReviewList) {
 
-        if(currentReviewList.isEmpty())
+        if(null == currentReviewList && currentReviewList.isEmpty())
         {
-            recentreviewTag.setVisibility(View.GONE);
+
         }
         else
         {
-
+            recentreviewTag.setVisibility(View.VISIBLE);
             ReviewAdapter adapter = new ReviewAdapter(currentReviewList, this,isAdmin);
             recyclerView.setAdapter(adapter);
         }
@@ -419,5 +498,36 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
             p.getReviewList().add(r);
             prod.child(productId).setValue(p);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.productpagemenu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.home) {
+            Intent launchNextActivity;
+            launchNextActivity = new Intent(ItemDetail.this, Home.class);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(launchNextActivity);
+        }
+        else if (id == R.id.cart) {
+            Intent launchNextActivity;
+            launchNextActivity = new Intent(ItemDetail.this, Cart.class);
+
+            startActivity(launchNextActivity);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

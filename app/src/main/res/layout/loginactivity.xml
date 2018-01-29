@@ -4,9 +4,21 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/new_login_gradient"
     android:orientation="vertical"
+    android:background="@drawable/new_login_gradient"
+
     >
+<!--android:background="@drawable/new_login_gradient"-->
+<!--
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+-->
+   <!-- <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:scaleType="centerInside" android:src="@drawable/masksbanner" />
+-->
 
 
     <LinearLayout
@@ -142,7 +154,8 @@
 
     </LinearLayout>
     </LinearLayout>
-
+<!--
+</FrameLayout>-->
 
 
 

@@ -114,6 +114,10 @@ public class AdminAcceptReject extends AppCompatActivity {
                 {
                     statusSet="Rejected";
                 }
+                else if (model.getStatus() == 4)
+                {
+                    statusSet="Cancelled";
+                }
                 viewHolder.status.setText(statusSet);
                 viewHolder.accept.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -127,6 +131,12 @@ public class AdminAcceptReject extends AppCompatActivity {
                         else if(model.getStatus()==2)
                         {
                             Toast.makeText(AdminAcceptReject.this, "It's already rejected",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if(model.getStatus()==4)
+                        {
+                            Toast.makeText(AdminAcceptReject.this, "It's already cancelled",
                                     Toast.LENGTH_SHORT).show();
 
                         }
@@ -154,6 +164,12 @@ public class AdminAcceptReject extends AppCompatActivity {
                         {
                             Toast.makeText(AdminAcceptReject.this, "It's already confirmed",
                                     Toast.LENGTH_SHORT).show();
+                        }
+                        else if(model.getStatus()==4)
+                        {
+                            Toast.makeText(AdminAcceptReject.this, "It's already cancelled",
+                                    Toast.LENGTH_SHORT).show();
+
                         }
                         else
                         {
