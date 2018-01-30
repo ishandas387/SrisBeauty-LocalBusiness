@@ -29,8 +29,11 @@ import com.srisbeauty.srisbeauty.model.OrderAcceptRejectViewHolder;
 import com.srisbeauty.srisbeauty.model.OrderItem;
 import com.srisbeauty.srisbeauty.model.Orders;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -221,12 +224,24 @@ public class AdminAcceptReject extends AppCompatActivity {
                 calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, model.getAddress());
                 calIntent.putExtra(CalendarContract.Events.DESCRIPTION, model.getServiceTime()+"--Bill: "+model.getTotal());
 
+                //Fri, Jan-26 @ 04:40 PM
                 Calendar calendar = Calendar.getInstance();
-                String arry [] = model.getServiceTime().split("-");
+                String firstBreak [] = model.getServiceTime().split(",");
+                String arry [] = firstBreak[1].split("-");
                 int month = getMonthInt(arry[0]);
                 String arry2[] = arry[1].split(" @ ");
                 int day = Integer.parseInt(arry2[0]);
-                String arry3[] = arry2[1].split(":");
+                Date date = null;
+                String HHFormat ="";
+                SimpleDateFormat parseFormat  = new SimpleDateFormat("hh:mm a");
+                SimpleDateFormat  dispFormat= new SimpleDateFormat("HH:mm");
+                try {
+                    date = parseFormat.parse(arry2[1].trim());
+                    HHFormat = dispFormat.format(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String arry3[] = HHFormat.split(":");
                 int hour = Integer.parseInt(arry3[0]);
                 int min = Integer.parseInt(arry3[1]);
                 GregorianCalendar calDate = new GregorianCalendar(calendar.get(Calendar.YEAR), month, day,hour,min);
@@ -237,7 +252,6 @@ public class AdminAcceptReject extends AppCompatActivity {
                         calDate.getTimeInMillis());
 
                 startActivity(calIntent);
-
             }
         });
 
