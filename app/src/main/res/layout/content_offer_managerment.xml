@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ishan387.testlogin.OfferManagerment"
+    tools:context="com.srisbeauty.srisbeauty.OfferManagerment"
     tools:showIn="@layout/activity_offer_managerment" android:background="#8C413A">
     <android.support.v7.widget.RecyclerView
 

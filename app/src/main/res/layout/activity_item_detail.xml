@@ -115,29 +115,29 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="6">
+                    android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="10">
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:id="@+id/name"
                         android:layout_marginTop="8dp"
-                        android:padding="12dp"
+                        android:padding="8dp"
                         android:text="ProductName"
-                        android:textSize="20sp"
-                        android:layout_weight="4"
+                        android:textSize="18sp"
+                        android:layout_weight="6"
                         android:textStyle="bold"
                         />
 
                     <TextView
                         android:gravity="right"
-                        android:layout_weight="2"
+                        android:layout_weight="4"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:id="@+id/itemdetail_price"
                         android:layout_marginTop="8dp"
-                        android:padding="12dp"
+                        android:padding="8dp"
                         android:text="price"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
 
                         android:textStyle="bold"
                         />
@@ -174,7 +174,7 @@
 
             <TextView
                 android:textColor="#8c8c8c"
-                android:layout_width="wrap_content" android:background="@color/grey_300"
+                android:layout_width="match_parent" android:padding="4dp" android:background="@color/grey_300"
                 android:layout_height="wrap_content" android:id="@+id/recentreviewtag" android:textSize="15sp" android:visibility="gone"  android:text="Recent reviews"/>
 
             <LinearLayout

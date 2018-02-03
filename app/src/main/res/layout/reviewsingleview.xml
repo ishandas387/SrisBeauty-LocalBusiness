@@ -54,7 +54,7 @@
             </LinearLayout>
              <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:paddingLeft="3dp" android:layout_marginLeft="2dp" android:id="@+id/revieweremail" android:textSize="10sp" android:text="Reviewer Email"/>
+                android:layout_height="wrap_content" android:paddingLeft="3dp" android:layout_marginLeft="2dp" android:id="@+id/revieweremail" android:autoLink="email" android:textSize="10sp"  android:text="Reviewer Email"/>
 
         </LinearLayout>
 

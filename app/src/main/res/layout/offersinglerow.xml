@@ -21,8 +21,15 @@
                 android:layout_margin="2dp"
                 android:id="@+id/scrollview" >
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <LinearLayout
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp" android:src="@drawable/bridalsomething" android:visibility="gone" android:id="@+id/fullscreenimage" android:scaleType="centerCrop" />
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
                 android:id="@+id/mainll" android:orientation="vertical"
@@ -32,7 +39,7 @@
                 android:layout_height="150dp">
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:src="@drawable/offers" android:id="@+id/offrimg"  android:scaleType="centerCrop"/>
+                    android:layout_height="match_parent"  android:src="@drawable/offers" android:id="@+id/offrimg"  android:scaleType="centerCrop"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp" android:orientation="vertical" android:background="@color/black_overlay">
@@ -52,16 +59,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:weightSum="10" android:orientation="horizontal">
+                android:layout_height="wrap_content"  android:weightSum="10" android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:layout_margin="3dp" android:padding="3dp" android:layout_weight="5"  android:textColor="#8c8c8c"  android:text="OFFER PRICE" />
+                    android:layout_height="wrap_content" android:layout_margin="3dp" android:padding="3dp" android:layout_weight="5"  android:textColor="#8c8c8c" android:id="@+id/offerpricename"  android:text="OFFER PRICE" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:layout_weight="5" android:layout_margin="3dp" android:padding="3dp" android:textAlignment="textEnd"
-                    android:textColor="#8c8c8c" android:text="OFFER ID" />
+                    android:textColor="#8c8c8c" android:id="@+id/offeridname" android:text="OFFER ID" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,6 +84,7 @@
                     android:layout_height="wrap_content" android:layout_margin="3dp"  android:textAlignment="textEnd" android:padding="3dp"  android:id="@+id/offerznid" android:text="1234567" android:layout_weight="5"   />
             </LinearLayout>
         </LinearLayout>
+                </FrameLayout>
 
 
             </ScrollView>

@@ -16,9 +16,9 @@ import com.srisbeauty.srisbeauty.onClickInterface;
 
 public class OfferZoneViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
-    public TextView offerznname, offerzndesc, offerznprice,offerznid;
+    public TextView offerznname, offerzndesc, offerznprice,offerznid,offerpricelabel,offeridlabel;
     public  Button delete, addtocart;
-    public ImageView offrimg;
+    public ImageView offrimg,fullscreen;
 
 
     public void setItemClickListener(onClickInterface itemClickListener) {
@@ -35,6 +35,9 @@ public class OfferZoneViewHolder extends RecyclerView.ViewHolder implements View
         delete = (Button) itemView.findViewById(R.id.offerzndelete);
         addtocart = (Button) itemView.findViewById(R.id.offerznaddtocart);
         offrimg =(ImageView) itemView.findViewById(R.id.offrimg);
+        fullscreen=(ImageView) itemView.findViewById(R.id.fullscreenimage);
+        offeridlabel=(TextView) itemView.findViewById(R.id.offeridname);
+        offerpricelabel=(TextView) itemView.findViewById(R.id.offerpricename);
     }
 
     @Override

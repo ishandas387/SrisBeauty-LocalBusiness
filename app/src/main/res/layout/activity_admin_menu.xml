@@ -118,11 +118,11 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
+         <!--   <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:layout_marginTop="2dp" android:id="@+id/usermanagement" android:elevation="20dp">
-
-                <LinearLayout
+-->
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:orientation="horizontal" android:id="@+id/um" android:weightSum="10">
 
@@ -136,7 +136,7 @@
 
                         android:scaleType="center"
                         android:src="@drawable/user" />
-                    <LinearLayout
+                   &lt;!&ndash; <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:layout_gravity="center" android:layout_weight="4" android:orientation="vertical">
                         <TextView
@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content" android:text="Manage your users" android:textSize="11sp" android:textColor="@color/lightgreytype" android:layout_weight="3"/>
 
                     </LinearLayout>
-
+&ndash;&gt;
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                         android:layout_weight="3"
                         android:src="@drawable/arrow" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>-->
 
         </LinearLayout>
 

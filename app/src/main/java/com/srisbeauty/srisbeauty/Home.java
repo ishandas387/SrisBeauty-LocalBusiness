@@ -159,7 +159,7 @@ public class Home extends AppCompatActivity
                           */
 
                         //Offers o = (Offers) d.child(d.getKey()).getValue();
-                        if (ot.getUrl() != null && !ot.getUrl().isEmpty())
+                        if (ot.getUrl() != null && !ot.getUrl().isEmpty() && !ot.isFullScreen())
                             url_maps.put(ot.getOfferName(),ot.getUrl());
                         //}
                     }
@@ -380,6 +380,11 @@ public class Home extends AppCompatActivity
             startActivity(i);
 
         }
+        else if(id == R.id.profile)
+        {
+            Intent i = new Intent(getApplicationContext(),UserHub.class);
+            startActivity(i);
+        }
         else if(id == R.id.gottocart)
         {
             Intent i = new Intent(getApplicationContext(),Cart.class);
@@ -410,7 +415,7 @@ public class Home extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_send) {
-            String url = "http://www.facebook.com";
+            String url = "http://www.facebook.com/SrisBeautyHyderabad";
 
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));

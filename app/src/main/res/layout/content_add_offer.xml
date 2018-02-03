@@ -93,6 +93,10 @@
                             android:singleLine="true"
                             android:hint="Offer price" />
                     </android.support.design.widget.TextInputLayout>
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/isfullscreen" android:text="Full image offer"/>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:text="**Recommended size to fit your offer banner 900 * 300" android:textSize="10sp" android:textColor="#8c8c8c"/>

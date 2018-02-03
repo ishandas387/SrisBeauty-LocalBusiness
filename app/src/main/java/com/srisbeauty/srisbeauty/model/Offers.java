@@ -10,6 +10,26 @@ public class Offers {
 
     String offerId;
     String url;
+    boolean isFullScreen = false;
+
+    public Offers(String offerId, String url, boolean isFullScreen, String offerName, String offerDescription, String offerPrice, Date offerCreated) {
+        this.offerId = offerId;
+        this.url = url;
+        this.isFullScreen = isFullScreen;
+        this.offerName = offerName;
+        this.offerDescription = offerDescription;
+        this.offerPrice = offerPrice;
+        this.offerCreated = offerCreated;
+    }
+
+    public boolean isFullScreen() {
+
+        return isFullScreen;
+    }
+
+    public void setFullScreen(boolean fullScreen) {
+        isFullScreen = fullScreen;
+    }
 
     public String getUrl() {
         return url;

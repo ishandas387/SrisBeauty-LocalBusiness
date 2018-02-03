@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class AddOffer extends AppCompatActivity {
     DatabaseReference offers;
     Uri filePath;
     byte[] bytearray;
+    CheckBox isFullScreen;
     StorageReference storage;
 
     private static final int PICK_IMAGE_REQUEST =111 ;
@@ -51,6 +53,7 @@ public class AddOffer extends AppCompatActivity {
         addOfferButton =(Button) findViewById(R.id.add_offer);
         offrImage =(Button) findViewById(R.id.add_offer_image);
         offers = FirebaseDatabase.getInstance().getReference("Offers");
+        isFullScreen = (CheckBox) findViewById(R.id.isfullscreen);
 
         storage = FirebaseStorage.getInstance().getReference();
         offrImage.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +92,7 @@ public class AddOffer extends AppCompatActivity {
         pd.show();
         final Offers of = new Offers();
 
-        if(bytearray != null)
+        if(bytearray != null && validOfferDetails() )
         {
 
             final StorageReference filePathStorage = storage.child("offerimages").child(offerName.getText().toString());
@@ -103,6 +106,10 @@ public class AddOffer extends AppCompatActivity {
                     of.setOfferName(offerName.getText().toString());
                     of.setOfferPrice(offerPrice.getText().toString());
                     of.setUrl(taskSnapshot.getDownloadUrl().toString());
+                    if(isFullScreen.isChecked())
+                    {
+                        of.setFullScreen(true);
+                    }
                     offers.child(of.getOfferId()).setValue(of);
 
 
@@ -112,7 +119,7 @@ public class AddOffer extends AppCompatActivity {
             });
 
         }
-        else
+        else if(validOfferDetails())
         {
             of.setOfferId(String.valueOf(System.currentTimeMillis()));
             of.setOfferCreated(new Date());
@@ -120,11 +127,14 @@ public class AddOffer extends AppCompatActivity {
             of.setOfferName(offerName.getText().toString());
             of.setOfferPrice(offerPrice.getText().toString());
             of.setUrl("");
+
             offers.child(of.getOfferId()).setValue(of);
             Toast.makeText(AddOffer.this,"Offer Added",Toast.LENGTH_LONG).show();
             finish();
         }
    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -157,6 +167,21 @@ public class AddOffer extends AppCompatActivity {
             });*/
 
         }
+    }
+    private boolean validOfferDetails() {
+        if(offerName.getText().toString() != null && !offerName.getText().toString().isEmpty())
+        {
+            if(offerPrice.getText().toString() != null && !offerPrice.getText().toString().isEmpty())
+            {
+                return true;
+            }
+        }
+        else
+        {
+            Toast.makeText(AddOffer.this,"Offer name/ price missing",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return false;
     }
 
 }

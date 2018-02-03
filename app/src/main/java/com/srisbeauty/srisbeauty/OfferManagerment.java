@@ -87,9 +87,27 @@ public class OfferManagerment extends AppCompatActivity {
                 viewHolder.offerznprice.setText("₹"+model.getOfferPrice());
                 if(model.getUrl()!= null && !model.getUrl().isEmpty())
                 {
+
                     Uri uri = Uri.parse(model.getUrl());
                     if(null!= uri) {
-                        Glide.with(getBaseContext()).load(uri).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.offrimg);
+                        if(model.isFullScreen())
+                        {
+                            Glide.with(getBaseContext()).load(uri).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.fullscreen);
+                            viewHolder.offerzndesc.setVisibility(View.GONE);
+                            viewHolder.fullscreen.setVisibility(View.VISIBLE);
+                            viewHolder.offerznid.setVisibility(View.GONE);
+                            viewHolder.offrimg.setVisibility(View.GONE);
+                            viewHolder.offerpricelabel.setVisibility(View.GONE);
+                            viewHolder.offeridlabel.setVisibility(View.GONE);
+                            viewHolder.offerznprice.setVisibility(View.GONE);
+                            viewHolder.offerznname.setText(model.getOfferName()+" : "+"₹"+model.getOfferPrice());
+
+                        }
+                        else
+                        {
+
+                            Glide.with(getBaseContext()).load(uri).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.offrimg);
+                        }
                         // draweeView.setImageURI(Uri.parse(model.getImageUrl()));
                     }
                 }
