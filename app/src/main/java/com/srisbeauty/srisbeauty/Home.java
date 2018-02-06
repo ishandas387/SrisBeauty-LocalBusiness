@@ -395,6 +395,9 @@ public class Home extends AppCompatActivity
 
             mAuth.signOut();
             Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(i);
 
         } else if (id == R.id.nav_admin) {
@@ -407,7 +410,7 @@ public class Home extends AppCompatActivity
                 i.setType("text/plain");
                 i.putExtra(Intent.EXTRA_SUBJECT, "Sri's Beauty");
                 String sAux = "\nLet me recommend you this application\n\n";
-                sAux = sAux + "https://play.google.com/store/apps/details?id=Orion.Soft \n\n";
+                sAux = sAux + "https://play.google.com/store/apps/details?id=com.srisbeauty.srisbeauty \n\n";
                 i.putExtra(Intent.EXTRA_TEXT, sAux);
                 startActivity(Intent.createChooser(i, "choose one"));
             } catch(Exception e) {

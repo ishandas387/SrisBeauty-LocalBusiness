@@ -42,9 +42,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingRight="16dp" >
 
-        <!-- Email Label -->
+
+
+         <!-- Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,6 +81,7 @@
             android:text="Login"
             android:textColor="@android:color/white"
             android:elevation="10dp"/>
+
         <!--<EditText
 
             android:layout_width="0dp"
@@ -112,21 +115,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Create one"
+                android:text="\t\t\tCreate one"
                 android:gravity="right"
+                android:layout_gravity="right"
                 android:textStyle="bold"
                 android:textSize="16dip"/>
 
         </LinearLayout>
 
 
-        <TextView  android:id="@+id/or"
+       <!-- <TextView  android:id="@+id/or"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="Or"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"/>-->
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"

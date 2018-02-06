@@ -63,6 +63,30 @@ public class ProductActivity extends AppCompatActivity {
     MaterialSearchBar materialSearchBar;
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        Glide.get(ProductActivity.this).clearMemory();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(ProductActivity.this).clearDiskCache();
+            }
+        }).start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Glide.get(ProductActivity.this).clearMemory();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(ProductActivity.this).clearDiskCache();
+            }
+        }).start();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
@@ -236,7 +260,7 @@ public class ProductActivity extends AppCompatActivity {
                     // Picasso.with(getBaseContext()).load(Uri.parse(model.getImageUrl())).into(viewHolder.bgi);
                     Uri uri = Uri.parse(model.getImageUrl());
                     if(null!= uri) {
-                        Glide.with(getBaseContext()).load(uri).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.bgi);
+                        Glide.with(getBaseContext()).load(uri).diskCacheStrategy(DiskCacheStrategy.RESULT).into(viewHolder.bgi);
                         // draweeView.setImageURI(Uri.parse(model.getImageUrl()));
                     }
                 }

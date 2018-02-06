@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "630593503446-rp35mjj5jh09l0eh6smugfu01cq37kba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.srisbeauty.srisbeauty",
+            "certificate_hash": "9fb0ec0a17208e745ce399d4b3a773325985b852"
+          }
+        },
+        {
+          "client_id": "630593503446-nddmfrrdcb2ehl7ui5jsa0hp071gmvdb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.srisbeauty.srisbeauty",
+            "certificate_hash": "44f25232a997e7b926fd5675cf0c89fc844cf834"
+          }
+        },
+        {
           "client_id": "630593503446-p4qfhusfci99ao250p2q8o7jm67mm4i3.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630593503446-p4qfhusfci99ao250p2q8o7jm67mm4i3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

@@ -20,6 +20,28 @@ public class UserDetails {
     boolean adminstrator = false;
     String userName;
     String uId;
+    String userAddress;
+
+    public String getUserAddress() {
+
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public UserDetails(String key, String userEmail, boolean adminstrator, String userName, String uId, String userAddress, boolean admin) {
+
+        this.key = key;
+        this.userEmail = userEmail;
+        this.adminstrator = adminstrator;
+        this.userName = userName;
+        this.uId = uId;
+        this.userAddress = userAddress;
+        this.admin = admin;
+    }
+
     public boolean admin;
 
     public void setKey(String key) {

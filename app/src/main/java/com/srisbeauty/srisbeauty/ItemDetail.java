@@ -24,6 +24,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -318,7 +320,13 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                  if(null != p)
                  {
                      if(null!= p.getImageUrl() && !p.getImageUrl().isEmpty())
-                         Picasso.with(getBaseContext()).load(Uri.parse(p.getImageUrl())).into(bgi);
+                     {
+                         Uri uri = Uri.parse(p.getImageUrl());
+                         if(null!= uri) {
+                             Glide.with(getBaseContext()).load(uri).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(bgi);
+                             // draweeView.setImageURI(Uri.parse(model.getImageUrl()));
+                         }
+                     }
                      name.setText(p.getName());
                      price.setText("₹"+p.getPrice());
                      clayout.setTitle(p.getCategory());
