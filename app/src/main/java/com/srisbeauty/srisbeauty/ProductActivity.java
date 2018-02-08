@@ -2,6 +2,7 @@ package com.srisbeauty.srisbeauty;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +38,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.srisbeauty.srisbeauty.model.Product;
 import com.srisbeauty.srisbeauty.model.ProductViewHolder;
 import com.srisbeauty.srisbeauty.model.ishan387.common.Util;
+import com.srisbeauty.srisbeauty.model.ishan387.db.CartDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,15 @@ public class ProductActivity extends AppCompatActivity {
                 Glide.get(ProductActivity.this).clearDiskCache();
             }
         }).start();
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        int count = new CartDatabase(getBaseContext()).getCount();
+        MenuItem itemCart = menu.findItem(R.id.cart2);
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        Util.setBadgeCount(getBaseContext(), icon, String.valueOf(count));
+        return true;
+        //return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -245,6 +256,11 @@ public class ProductActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        invalidateOptionsMenu();
+    }
     private void loadRecylerView(Query query) {
         adapter = new FirebaseRecyclerAdapter<Product, ProductViewHolder>(Product.class,R.layout.productlistrow,ProductViewHolder.class,query) {
             @Override
@@ -308,7 +324,7 @@ public class ProductActivity extends AppCompatActivity {
         if (id == R.id.home) {
             finish();
         }
-        if (id == R.id.cart) {
+        if (id == R.id.cart2) {
             Intent launchNextActivity;
             launchNextActivity = new Intent(ProductActivity.this, Cart.class);
             launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,6 +1,7 @@
 package com.srisbeauty.srisbeauty;
 
 import android.content.Intent;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 
 import com.srisbeauty.srisbeauty.model.CategorySelectAdapter;
 import com.srisbeauty.srisbeauty.model.ishan387.common.Constants;
+import com.srisbeauty.srisbeauty.model.ishan387.common.Util;
+import com.srisbeauty.srisbeauty.model.ishan387.db.CartDatabase;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,7 +44,7 @@ RecyclerView recyclerView;
             launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(launchNextActivity);
         }
-        else if (id == R.id.cart) {
+        else if (id == R.id.cart2) {
             Intent launchNextActivity;
             launchNextActivity = new Intent(SubCategoryActivity.this, Cart.class);
 
@@ -50,6 +53,21 @@ RecyclerView recyclerView;
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        int count = new CartDatabase(getBaseContext()).getCount();
+        MenuItem itemCart = menu.findItem(R.id.cart2);
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        Util.setBadgeCount(getBaseContext(), icon, String.valueOf(count));
+        return true;
+        //return super.onPrepareOptionsMenu(menu);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

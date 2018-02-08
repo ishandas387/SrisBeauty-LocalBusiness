@@ -75,7 +75,9 @@ public class UserAdd extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserAdd.this,MainActivity.class);
+                Intent i = new Intent(UserAdd.this,UserHub.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }
         });
@@ -121,7 +123,9 @@ public class UserAdd extends AppCompatActivity {
             db.addAUser(new Users(1,a,b,c,d,e,f,g));
             Toast.makeText(getApplicationContext(), "Details Added.\nThank You.", Toast.LENGTH_SHORT).show();
 */
-            Intent i = new Intent(UserAdd.this,MainActivity.class);
+            Intent i = new Intent(UserAdd.this,UserHub.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
 
         }

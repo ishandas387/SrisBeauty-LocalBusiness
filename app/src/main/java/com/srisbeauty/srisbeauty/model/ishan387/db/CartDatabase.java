@@ -79,6 +79,16 @@ public class CartDatabase extends SQLiteAssetHelper {
         return count;
     }
 
+    public int getCount()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("SELECT * FROM SBCART");
+        Cursor c = db.rawQuery(query, null);
+        int count = c.getCount();
+        c.close();
+        return count;
+    }
+
     public void deleteItem(String itemName)
     {
         SQLiteDatabase db = getReadableDatabase();

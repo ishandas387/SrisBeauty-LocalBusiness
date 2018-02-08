@@ -60,7 +60,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_category"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".Cart" />
+        <activity android:name=".Cart"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".ViewOrders" />
         <activity android:name=".OrderStatus" />
         <activity
@@ -74,6 +76,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserHub"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminAcceptReject"
@@ -83,6 +86,7 @@
         <activity
             android:name=".OfferManagerment"
             android:label="Offer Zone"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddOffer"

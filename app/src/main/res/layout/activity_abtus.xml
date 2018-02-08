@@ -38,8 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"  android:scaleType="centerCrop" android:src="@drawable/founder"/>
             <TextView
-                android:layout_width="wrap_content" android:padding="5dp"
-                android:layout_height="wrap_content" android:text="LAKSHMI ANUMAKONDA" android:textSize="15sp" />
+                android:layout_width="wrap_content" android:paddingLeft="5dp"
+                android:layout_height="wrap_content" android:text="Laxmi Anumakonda" android:textSize="15sp" />
             <TextView
                 android:layout_width="wrap_content" android:paddingLeft="5dp"
                 android:layout_height="wrap_content" android:text="Founder" android:textSize="11sp" />

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -61,9 +62,10 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
     float t = 0.0f;
     public static TextView total;
     List<CartItems> itemsInCart = new ArrayList<>();
+
     CartAdapter adapter;
     Button placeOrder;
-    TextView cartEmptyMessage;
+    ImageView cartEmptyMessage;
     List<OrderItem> productList = new ArrayList<>();
     private FirebaseAuth mAuth;
     String addr="";
@@ -103,7 +105,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
         mAuth = FirebaseAuth.getInstance();
         selectDate =(Button) findViewById(R.id.selectdate);
         selectTime =(Button) findViewById(R.id.selecttime);
-        cartEmptyMessage =(TextView) findViewById(R.id.cartempty);
+        cartEmptyMessage =(ImageView) findViewById(R.id.cartempty);
         loadListAndAdapter();
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,7 +237,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
 
     }
 
-    private void placeorderMethod(String userPhoneNumber) {
+    private void placeorderMethod(String userPhoneNumber,String addr) {
 
         productList.clear();
         itemsInCart.clear();
@@ -311,7 +313,7 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
 
     private void showAlertDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
-        alertDialog.setTitle("One more step");
+        alertDialog.setTitle("Step1:");
         alertDialog.setMessage("Add your phone number");
         final EditText editText = new EditText(Cart.this);
         editText.setInputType(InputType.TYPE_CLASS_NUMBER
@@ -354,8 +356,8 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
 
                    }
                    else {
+                        showAlertDialog2(editText.getText().toString(),addr);
 
-                        placeorderMethod(editText.getText().toString());
                    }
                }
                else
@@ -373,6 +375,52 @@ public class Cart extends AppCompatActivity implements DatePickerDialog.OnDateSe
         });
 
         alertDialog.show();
+    }
+
+    private void showAlertDialog2(final String ph, final String addr) {
+
+        AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(Cart.this);
+        alertDialog2.setTitle("Step2:");
+        alertDialog2.setMessage("Check your address");
+        final EditText editText = new EditText(Cart.this);
+        editText.setInputType(InputType.TYPE_CLASS_TEXT
+
+        );
+        editText.setText(addr);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        editText.setLayoutParams(lp);
+        alertDialog2.setView(editText);
+
+        alertDialog2.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(null != editText.getText() && !editText.getText().toString().isEmpty())
+                {
+                    if(!Util.isConnectedToInternet(Cart.this))
+                    {
+                        Toast.makeText(Cart.this, "Offline ! Please check connectivity.",
+                                Toast.LENGTH_SHORT  ).show();
+
+                    }
+                    else {
+                        placeorderMethod(ph,editText.getText().toString());
+                    }
+                }
+                else
+                {
+                    showAlertDialog2(ph,addr);
+                }
+            }
+        });
+
+        alertDialog2.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog2.show();
     }
 
     private void loadList() {

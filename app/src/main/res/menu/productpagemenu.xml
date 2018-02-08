@@ -12,9 +12,15 @@
         android:icon="@drawable/homeicon"
         android:orderInCategory="100"
         app:showAsAction="always" />
-    <item android:id="@+id/cart"
+  <!--  <item android:id="@+id/cart"
         android:title="Home"
         android:icon="@drawable/ic_action_cart"
+        android:orderInCategory="200"
+        app:showAsAction="always" />-->
+
+    <item android:id="@+id/cart2"
+        android:title="cart2"
+        android:icon="@drawable/ic_cart_badge"
         android:orderInCategory="200"
         app:showAsAction="always" />
 

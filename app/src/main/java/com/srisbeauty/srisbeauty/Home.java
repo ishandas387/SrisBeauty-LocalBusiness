@@ -214,6 +214,18 @@ public class Home extends AppCompatActivity
                 //offerImageLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
                 offerImageLayout.setDuration(5000);
 
+                /*offerImageLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        Toast.makeText(Home.this, "Offers",
+                                Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(),OfferManagerment.class);
+                        startActivity(i);
+                    }
+                });*/
+
                 LocalBroadcastManager.getInstance(this).registerReceiver(tokenReceiver,
                         new IntentFilter("tokenReceiver"));
 
@@ -231,22 +243,22 @@ public class Home extends AppCompatActivity
                     .description(name)
                     .image(url_maps.get(name))
                     .setScaleType(BaseSliderView.ScaleType.Fit);
-
+            textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                @Override
+                public void onSliderClick(BaseSliderView slider) {
+                    Toast.makeText(Home.this, "Offers",
+                            Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(),OfferManagerment.class);
+                    startActivity(i);
+                }
+            });
             //add your extra information
           /*  textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
                     .putString("extra",name);*/
 
             offerImageLayout.addSlider(textSliderView);
-            offerImageLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(Home.this, "pela",
-                            Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(),OfferManagerment.class);
-                    startActivity(i);
-                }
-            });
+
         }
 
     }

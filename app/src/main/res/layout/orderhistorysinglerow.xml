@@ -97,17 +97,17 @@
                     android:layout_height="wrap_content" android:orientation="horizontal">
 
                     <android.support.v7.widget.AppCompatButton
-                        android:layout_marginTop="4dp" android:padding="5dp"
+                        android:layout_marginTop="4dp" android:padding="2dp"
                         android:id="@+id/addtocalendar"
                         android:layout_width="150dp"
-                        android:layout_height="36dp"
+                        android:layout_height="wrap_content"
                         android:background="@android:color/holo_blue_light"
                         android:text="Add to Calendar"
                         android:textColor="@android:color/white"
                         app:elevation="40dp"
                         android:elevation="40dp"/>
                     <android.support.v7.widget.AppCompatButton
-                        android:layout_marginTop="4dp" android:padding="5dp"
+                        android:layout_marginTop="4dp" android:padding="2dp"
                         android:id="@+id/cancelorder"
                         android:layout_width="150dp"
                         android:layout_height="36dp"

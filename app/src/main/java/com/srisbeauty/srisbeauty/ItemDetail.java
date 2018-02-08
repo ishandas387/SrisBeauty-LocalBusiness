@@ -1,8 +1,11 @@
 package com.srisbeauty.srisbeauty;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -37,6 +40,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import com.squareup.picasso.Picasso;
+import com.srisbeauty.srisbeauty.model.BadgeDrawable;
 import com.srisbeauty.srisbeauty.model.CartItems;
 import com.srisbeauty.srisbeauty.model.OrderItem;
 import com.srisbeauty.srisbeauty.model.Orders;
@@ -84,7 +88,9 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
     UserDetails userDetail;
     DataSnapshot users;
     Spinner subcategorySpin;
+    List<Review> currentReviewList ;
     boolean isAdmin = false;
+    Menu menu;
     Map<String,String> subCategoryMap = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +137,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                 layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
-
-
         clayout = (CollapsingToolbarLayout) findViewById(R.id.clayout);
-
         clayout.setExpandedTitleTextAppearance(R.style.expandclayout);
         clayout.setCollapsedTitleTextAppearance(R.style.collapsedclayout);
 
@@ -201,6 +204,10 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                     new CartDatabase(getBaseContext()).addToCart(cartItem);
                     Toast.makeText(ItemDetail.this, "Added to cart",
                             Toast.LENGTH_SHORT).show();
+
+
+                    invalidateOptionsMenu();
+
                 }
                 else
                 {
@@ -298,17 +305,69 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
 
     private void showRatingDialogue() {
 
-        new AppRatingDialog.Builder()
-                .setPositiveButtonText("Submit")
-                .setNegativeButtonText("Cancel")
-                .setNoteDescriptions(Arrays.asList("Very Bad","Ok","Good","Very Good","Excellent"))
-                .setDefaultRating(1)
-                .setTitle("Rate the service")
-                .setDescription("Select stars and submit feedback")
-                .setTitleTextColor(R.color.colorPrimary)
-                .setHint("Please write your comment here")
-                .setWindowAnimation(R.style.RatingDialogueFadeAnimation)
-                .create(ItemDetail.this).show();
+        boolean hasReviewed = false;
+        Review userReview = null;
+        if(currentReviewList != null &&  !currentReviewList.isEmpty())
+        {
+            for(Review r : currentReviewList)
+            {
+                if(r.getUserEmail().equalsIgnoreCase(mAuth.getCurrentUser().getEmail()))
+                {
+                    hasReviewed = true;
+                    userReview = r;
+
+                }
+            }
+            if(hasReviewed && null != userReview)
+            {
+                String hint ="Please write your comment here";
+                if(userReview.getReview()!= null && !userReview.getReview().isEmpty())
+                {
+                    hint = userReview.getReview();
+                }
+                new AppRatingDialog.Builder()
+                        .setPositiveButtonText("Submit")
+                        .setNegativeButtonText("Cancel")
+                        .setNoteDescriptions(Arrays.asList("Very Bad","Ok","Good","Very Good","Excellent"))
+                        .setDefaultRating((int)userReview.getRating())
+                        .setTitle("Rate the service")
+                        .setDescription("Select stars and submit feedback")
+                        .setTitleTextColor(R.color.colorPrimary)
+                        .setHint(hint)
+                        .setWindowAnimation(R.style.RatingDialogueFadeAnimation)
+                        .create(ItemDetail.this).show();
+            }
+            else
+            {
+                new AppRatingDialog.Builder()
+                        .setPositiveButtonText("Submit")
+                        .setNegativeButtonText("Cancel")
+                        .setNoteDescriptions(Arrays.asList("Very Bad","Ok","Good","Very Good","Excellent"))
+                        .setDefaultRating(5)
+                        .setTitle("Rate the service")
+                        .setDescription("Select stars and submit feedback")
+                        .setTitleTextColor(R.color.colorPrimary)
+                        .setHint("Please write your comment here")
+                        .setWindowAnimation(R.style.RatingDialogueFadeAnimation)
+                        .create(ItemDetail.this).show();
+            }
+        }
+        else
+        {
+            new AppRatingDialog.Builder()
+                    .setPositiveButtonText("Submit")
+                    .setNegativeButtonText("Cancel")
+                    .setNoteDescriptions(Arrays.asList("Very Bad","Ok","Good","Very Good","Excellent"))
+                    .setDefaultRating(5)
+                    .setTitle("Rate the service")
+                    .setDescription("Select stars and submit feedback")
+                    .setTitleTextColor(R.color.colorPrimary)
+                    .setHint("Please write your comment here")
+                    .setWindowAnimation(R.style.RatingDialogueFadeAnimation)
+                    .create(ItemDetail.this).show();
+        }
+
+
     }
 
 
@@ -331,7 +390,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                      price.setText("₹"+p.getPrice());
                      clayout.setTitle(p.getCategory());
                      itemdescription.setText(p.getDescription());
-                     List<Review> currentReviewList = p.getReviewList();
+                    currentReviewList = p.getReviewList();
                      if(null != currentReviewList && !currentReviewList.isEmpty())
                      {
                          int sum=0, count=0;
@@ -377,7 +436,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Sb x = dataSnapshot.getValue(Sb.class);
-                if (!x.getSb().isEmpty())
+                if ( x!= null && x.getSb() !=null && !x.getSb().isEmpty())
                 {
                     //test2-23,tes-50
                     //split by ,
@@ -400,6 +459,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
                     subcategorySpin.setAdapter(adapter);
                 }
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -512,6 +572,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.productpagemenu, menu);
+        this.menu =menu;
         return true;
     }
     @Override
@@ -530,7 +591,7 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
             launchNextActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(launchNextActivity);
         }
-        else if (id == R.id.cart) {
+        else if (id == R.id.cart2) {
             Intent launchNextActivity;
             launchNextActivity = new Intent(ItemDetail.this, Cart.class);
 
@@ -538,4 +599,40 @@ public class ItemDetail extends AppCompatActivity implements RatingDialogListene
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Glide.get(ItemDetail.this).clearMemory();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(ItemDetail.this).clearDiskCache();
+            }
+        }).start();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        int count = new CartDatabase(getBaseContext()).getCount();
+        MenuItem itemCart = menu.findItem(R.id.cart2);
+        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+        Util.setBadgeCount(getBaseContext(), icon, String.valueOf(count));
+        return true;
+        //return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Glide.get(ItemDetail.this).clearMemory();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(ItemDetail.this).clearDiskCache();
+            }
+        }).start();
+    }
+
+
+
 }

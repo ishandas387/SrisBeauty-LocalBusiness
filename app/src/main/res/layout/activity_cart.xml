@@ -10,25 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">-->
 
-
+   <!-- <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/cartempty" android:layout_gravity="center" android:gravity="center_horizontal" android:textColor="@android:color/white" android:visibility="visible" android:textSize="15sp" android:text="Cart is empty.."/>
+-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:layout_above="@+id/cardview">
 
-        <ImageView
+       <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"  android:src="@drawable/bridalsomething" android:scaleType="centerCrop"/>
-        <LinearLayout
+            android:layout_height="match_parent" android:id="@+id/cartempty" android:visibility="gone"  android:src="@drawable/emptycart" android:scaleType="fitCenter"/>
+       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:background="@android:color/black" android:alpha="0.6">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/cartempty" android:layout_gravity="center_horizontal" android:gravity="center_horizontal" android:textColor="@color/mdtp_white" android:visibility="gone" android:textSize="15sp" android:text="Cart is empty.."/>
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"  android:orientation="vertical" android:weightSum="10">
+            android:layout_height="match_parent" android:orientation="vertical" android:weightSum="10">
 
 
             <android.support.v7.widget.RecyclerView
